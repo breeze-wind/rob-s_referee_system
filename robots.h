@@ -2,16 +2,27 @@
 #define ROBOTS_H
 #include<unordered_map>
 #include<string>
+
 namespace my
 {
     using uns = unsigned short;
 
     class robots
     {
+
+
+
+
     public:
         robots();
+        robots::robots(uns heat)
         ~robots() = default;
-        uns blood
+        uns blood ();
+        uns heat ();
+        void blood(uns);
+        void heat(uns);
+
+        uns Team_Id;
 
     private:
         // unsigned short  Blood_Ceiling;
@@ -19,7 +30,6 @@ namespace my
         uns Blood_Count;
         uns Heat_Count;
         uns team;
-        uns Team_Id;
 
     };
 

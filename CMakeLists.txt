@@ -6,4 +6,6 @@ set(CMAKE_CXX_STANDARD 20)
 add_executable(robomaster_caipanmoni main.cpp
         robots.cpp
         robots.h
+        teams.cpp
+        teams.h
 )
