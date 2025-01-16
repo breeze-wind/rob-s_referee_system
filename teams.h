@@ -26,8 +26,8 @@ namespace my
         teams();
         ~teams()=default;
        //std::shared_ptr<robots>();
-       std::shared_ptr<robots>find_in_survive();
-       std::shared_ptr<robots>find_in_damaged();
+       std::shared_ptr<robots>find_in_survive();//在幸存机器人中查找
+       std::shared_ptr<robots>find_in_damaged();//在阵亡机器人里找
     };
 
     inline std::unordered_map<my::uns,std::shared_ptr<my::teams>> TeamList;//TeamList映射

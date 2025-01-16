@@ -13,6 +13,7 @@ class robots;
 
 class manage {
 public:
+
      std::pmr::vector<std::shared_ptr<robots>> Robots_List_ALL;
 };
 inline manage mymanage;
