@@ -69,8 +69,8 @@ namespace my
        // TeamList[Team]->Team_Robots_List_Survive.push_back(r);//存活列表里加机器人
         auto q=std::make_pair(tid,r);
         TeamList[Team]->robmap.insert(q);//加入tid的映射
-        TeamList[Team]->robmap_survive.insert(q);
-        TeamList[Team]->robmap_damaged.insert(q);
+        TeamList[Team]->robmap_survive.insert(q);//
+        TeamList[Team]->robmap_damaged.insert(q);//
     }
     robots::~robots()
     {

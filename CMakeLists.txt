@@ -10,4 +10,6 @@ add_executable(robomaster_caipanmoni main.cpp
         teams.h
         manage.cpp
         manage.h
+        command.cpp
+        command.h
 )

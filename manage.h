@@ -14,7 +14,7 @@ class robots;
 class manage {
 public:
 
-     std::pmr::vector<std::shared_ptr<robots>> Robots_List_ALL;
+     std::pmr::vector<std::shared_ptr<robots>> Robots_List_ALL;//存所有的机器人的指针的数组
 };
 inline manage mymanage;
 } // my
