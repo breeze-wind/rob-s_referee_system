@@ -8,29 +8,25 @@ namespace my
 {
     Infantry_Robots_1::Infantry_Robots_1(uns team,uns tid):robots(team,tid)
     {
-        Infantry_Robots_1::Blood_Ceiling = 100;
-        Infantry_Robots_1::Heat_Ceiling = 100;
+
         blood(this->Blood_Ceiling);
     }
 
     Construction_Robots::Construction_Robots(uns team,uns tid):robots(team,tid)
     {
-        Construction_Robots::Blood_Ceiling = 300;
-        Construction_Robots::Heat_Ceiling = 0;
+
         blood(Blood_Ceiling);
     }
 
     Infantry_Robots_2::Infantry_Robots_2(uns team,uns tid):robots(team,tid)
     {
-        Infantry_Robots_2::Blood_Ceiling = 150;
-        Infantry_Robots_2::Heat_Ceiling = 200;
+
         blood(this->Blood_Ceiling);
     }
 
     Infantry_Robots_3::Infantry_Robots_3(uns team,uns tid):robots(team,tid)
     {
-        Infantry_Robots_3::Blood_Ceiling = 250;
-        Infantry_Robots_3::Heat_Ceiling = 300;
+
         blood(this->Blood_Ceiling);
     }
 
@@ -77,6 +73,7 @@ namespace my
       // mymanage.Robots_List_ALL.;
 
     }
+
 
     // robots::robots(uns heat,uns Team,uns tid)//已废弃
     // {

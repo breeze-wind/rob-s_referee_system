@@ -23,7 +23,7 @@ namespace my
         //std::pmr::vector<std::shared_ptr<robots>> Team_Robots_List_Survive;
         //std::pmr::vector<std::shared_ptr<robots>> Team_Robots_List_Damaged;
         //std::vector<bool> Team_Robots_Issurvive;
-        teams();
+        teams()=default;
         ~teams()=default;
        //std::shared_ptr<robots>();
        std::shared_ptr<robots>find_in_survive();//在幸存机器人中查找
