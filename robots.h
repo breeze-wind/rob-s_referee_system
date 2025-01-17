@@ -16,8 +16,8 @@ namespace my
         robots(uns, uns); //初始化热量0血量满，并加入或创造相应队伍，加入队伍机器人名单，加入teamid映射
         //  robots::robots(uns heat,uns,uns);//同上，但带初始热量（已废弃）
         ~robots();
-        uns blood(); //返回血量
-        uns heat(); //返回热量
+        uns blood(void); //返回血量
+        uns heat(void); //返回热量
         void blood(uns); //设定血量
         void heat(uns); //设定热量
         uns teamname; //队伍名称
@@ -25,7 +25,7 @@ namespace my
         bool is_survive=true;
         std::shared_ptr<robots> tothis = shared_from_this(); //指向自身的智能指针
         bool level_up() = delete;
-        void damage();
+        void damage(void);
 
 
     private:

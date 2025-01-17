@@ -70,7 +70,7 @@ namespace my
         TeamList[Teamname]->Team_Robots_Survive.insert(q);//
         TeamList[Teamname]->Team_Robots_Damaged.insert(q);//
     }
-    robots::damage()//机器人销毁
+   void robots::damage()//机器人销毁
     {
         blood(0);//血量0
         heat(0);//热量0
@@ -78,7 +78,7 @@ namespace my
      TeamList.find[teamname]->Team_Robots_Survive.std::erase(team_id);//从队伍存活名单删除
         auto q=std::make_pair(team_id,team_id);
         TeamList.find[teamname]->Team_Robots_Damaged.insert(q);//加入阵亡名单
-
+      mymanage.Robots_List_Survive.erase()
     }
     robots::~robots()
     {
