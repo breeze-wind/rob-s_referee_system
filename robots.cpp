@@ -78,7 +78,7 @@ namespace my
      TeamList.find[teamname]->Team_Robots_Survive.std::erase(team_id);//从队伍存活名单删除
         auto q=std::make_pair(team_id,team_id);
         TeamList.find[teamname]->Team_Robots_Damaged.insert(q);//加入阵亡名单
-        A
+
     }
     robots::~robots()
     {
