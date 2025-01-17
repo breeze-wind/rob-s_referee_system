@@ -8,7 +8,6 @@ namespace my
 {
 
 
-    std::shared_ptr<robots> find_in_survive();
-    std::shared_ptr<robots> find_in_damaged();
+
 
 }

@@ -14,9 +14,11 @@ class robots;
 class manage {
 public:
 
-     std::pmr::vector<std::shared_ptr<robots>> Robots_List_ALL;//存所有的机器人的指针的数组
+     std::pmr::vector<std::shared_ptr<robots>> Robots_List_Survive;//存所有的存活机器人的指针的数组
+     //std::pmr::vector<std::shared_ptr<robots>> Robots_List_Damaged;//阵亡机器人指针
 };
 inline manage mymanage;
+
 } // my
 
 #endif //MANAGE_H

@@ -20,10 +20,13 @@ namespace my
         uns heat(); //返回热量
         void blood(uns); //设定血量
         void heat(uns); //设定热量
-        uns team; //队伍名称
+        uns teamname; //队伍名称
         uns team_id; //tid
+        bool is_survive=true;
         std::shared_ptr<robots> tothis = shared_from_this(); //指向自身的智能指针
         bool level_up() = delete;
+        void damage();
+
 
     private:
         // unsigned short  Blood_Ceiling;
