@@ -15,7 +15,7 @@ class command {
   uns time=0;//时间吗（实时）
   uns cmd_step=0;//实时指令索引
   void Add_Robots(uns,uns,uns  );//指令A创造机器人
-  void Print(std::shared_ptr<robots>);//打印相关信息
+  //void Print();//打印相关信息
   void Attack(uns,uns,uns);//攻击机器人
   void Heat(uns,uns,uns);//热量上升
   void Upgrade(uns,uns,uns);//机器人升级
@@ -27,7 +27,9 @@ class command {
   std::shared_ptr<uns[]> parameter3;//存指令参数
   private:
 };
-
+  void is_overheated(std::shared_ptr<robots>& the_robot );//判断是否超热量扣血，并消耗热量，
+  void is_damaged(std::shared_ptr<robots>& the_robot );//判断血量是不是少了
+  void Time_Routine();//回合日常工作
 } // my
 
 #endif //COMMAND_H
