@@ -15,22 +15,30 @@ namespace my
 {
     Infantry_Robots_1::Infantry_Robots_1(uns team, uns tid): robots(team, tid)
     {
-        blood(this->Blood_Ceiling);
+        Blood_Ceiling = 100;
+        Heat_Ceiling = 100;
+        blood(Blood_Ceiling);
     }
 
     Construction_Robots::Construction_Robots(uns team, uns tid): robots(team, tid)
     {
+        Blood_Ceiling = 300;
+        Heat_Ceiling = 0;
         blood(Blood_Ceiling);
     }
 
     Infantry_Robots_2::Infantry_Robots_2(uns team, uns tid): robots(team, tid)
     {
-        blood(this->Blood_Ceiling);
+        Blood_Ceiling = 150;
+        Heat_Ceiling = 200;
+        blood(Blood_Ceiling);
     }
 
     Infantry_Robots_3::Infantry_Robots_3(uns team, uns tid): robots(team, tid)
     {
-        blood(this->Blood_Ceiling);
+        Blood_Ceiling = 250;
+        Heat_Ceiling = 300;
+        blood(Blood_Ceiling);
     }
 
     uns robots::blood()
@@ -86,8 +94,9 @@ namespace my
             mymanage.Robots_List_Survive.erase(it);
             print();
         }
-        else std::cout << "The Robot With Teamid " << team_id << " in Team " << teamname << " is Already Damaged " <<
-            std::endl;
+        else
+            std::cout << "The Robot With Teamid " << team_id << " in Team " << teamname << " is Already Damaged " <<
+                std::endl;
     }
 
     void robots::Revive(void)
@@ -153,12 +162,12 @@ namespace my
         auto q = std::make_pair(team_id, r);
         TeamList[teamname]->Team_Robots_All.insert(q); //加入tid的映射
         TeamList[teamname]->Team_Robots_Survive.insert(q); //
-        TeamList[teamname]->Team_Robots_Damaged.insert(q); //
+        // TeamList[teamname]->Team_Robots_Damaged.insert(q); //
     }
 
     void robots::print() const
     {
-        std::cout << "D"<<" " << teamname <<" "<< team_id << std::endl;
+        std::cout << "D" << " " << teamname << " " << team_id << std::endl;
     }
 
     // robots::robots(uns heat,uns Team,uns tid)//已废弃

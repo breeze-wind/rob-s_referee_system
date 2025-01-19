@@ -33,12 +33,12 @@ namespace my
         std::shared_ptr<robots> tothis ; //指向自身的智能指针
         void level_up(void) ; //升级（删除自身，创造一个高等级的，各种映射处理利索）
         void damage(void); //阵亡
-        const uns Blood_Ceiling = 0;
-        const uns Heat_Ceiling = 0;
+        uns Blood_Ceiling = 0;
+        uns Heat_Ceiling = 0;
         void print(void) const; //打印相关信息
         void Revive(void); //复活
         void ptr_create(void);
-        uns level = 0;
+       const uns level = 0;
 
     private:
         // unsigned short  Blood_Ceiling;
@@ -54,10 +54,10 @@ namespace my
         Construction_Robots(uns, uns); //初始化
         ~Construction_Robots() = default ;
         void level_up(void) = delete;
-
+         uns level = 0;
     private:
-        const uns Blood_Ceiling = 300;
-        const uns Heat_Ceiling = 0;
+        uns Blood_Ceiling = 300;
+        uns Heat_Ceiling = 0;
     };
 
     class Infantry_Robots_1 : public robots
@@ -67,9 +67,9 @@ namespace my
         Infantry_Robots_1(uns, uns);
         ~Infantry_Robots_1() = default;
         void level_up(void) ;
-        const uns Blood_Ceiling = 100;
-        const uns Heat_Ceiling = 100;
-        uns level = 1;
+         uns Blood_Ceiling = 100;
+         uns Heat_Ceiling = 100;
+       const uns level = 1;
     };
 
     class Infantry_Robots_2 : public robots
@@ -78,8 +78,8 @@ namespace my
         enum type robottype = Infantry;
         Infantry_Robots_2(uns, uns);
         ~Infantry_Robots_2() = default;
-        const uns Blood_Ceiling = 150;
-        const uns Heat_Ceiling = 200;
+         uns Blood_Ceiling = 150;
+         uns Heat_Ceiling = 200;
         void level_up(void) ;
         uns level = 2;
     };
@@ -90,8 +90,8 @@ namespace my
         enum type robottype = Infantry;
         Infantry_Robots_3(uns, uns);
         ~Infantry_Robots_3() = default;
-        const uns Blood_Ceiling = 250;
-        const uns Heat_Ceiling = 300;
+        uns Blood_Ceiling = 250;
+        uns Heat_Ceiling = 300;
         uns level = 3;
 
     };
