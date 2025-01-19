@@ -112,10 +112,10 @@ namespace my
                switch (type)
                {
                case 0:cout<<"2"<<endl;
-                  new Construction_Robots(teamname, team_id);
+                  std::make_shared< Construction_Robots> (teamname, team_id);
                    break;
                case 1:cout<<"3"<<endl;
-                  new Infantry_Robots_1(teamname, team_id);
+                 std::make_shared< Infantry_Robots_1>(teamname, team_id);
                    break;
                default: cout << "Wrong command!" << endl;
                }

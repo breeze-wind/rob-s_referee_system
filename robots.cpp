@@ -66,6 +66,7 @@ namespace my
             auto q = std::make_pair(Teamname, p);
             TeamList.insert(q);
         }
+        tothis== shared_from_this();
         std::shared_ptr<robots> r = tothis;
         mymanage.Robots_List_Survive.push_back(r); //总存活列表里加上这个机器人
         // TeamList[Team]->Team_Robots_List_Survive.push_back(r);//队存活列表里加机器人

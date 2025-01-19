@@ -30,7 +30,7 @@ namespace my
         uns teamname; //队伍名称
         uns team_id; //tid
         bool is_survive = true;
-        std::shared_ptr<robots> tothis = shared_from_this(); //指向自身的智能指针
+        std::shared_ptr<robots> tothis ; //指向自身的智能指针
         void level_up(void) ; //升级（删除自身，创造一个高等级的，各种映射处理利索）
         void damage(void); //阵亡
         const uns Blood_Ceiling = 0;
