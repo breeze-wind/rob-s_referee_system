@@ -53,10 +53,12 @@ namespace my
                     break;
                 case 'U': Upgrade(parameter1[cmd_step], parameter2[cmd_step], parameter3[cmd_step]);
                     break;
-                    cmd_step++;
+
                 default: cout << "Wrong command!" << endl;
                 }
+                cmd_step++;
             }
+
             time++;
         }
         // for (int i=0;i<cmd_nums;i++)
@@ -100,46 +102,55 @@ namespace my
 
     void command::Add_Robots(uns teamname, uns team_id, uns type) //指令A
     {
+        cout << teamname << endl;
         auto p = TeamList.find(teamname);
-        if (p == TeamList.end() || TeamList.empty()) //检查有无该队名，若没有则创建新队伍，创建新机器人
-        {
-            switch (type)
-            {
-            case 0: Construction_Robots(teamname, team_id);
-                break;
-            case 1: Infantry_Robots_1(teamname, team_id);
-                break;
-            default: cout << "Wrong command!" << endl;
-            }
-        }
-        else
-        {
-            //队伍存在，判断在不在阵亡池
-            auto theteam = TeamList[teamname];
-            auto q = theteam->Team_Robots_Damaged.find(team_id);
-            if (q != theteam->Team_Robots_Damaged.end()) //在阵亡池,给他复活
-            {
-                auto tmp = std::make_pair(team_id, theteam->Team_Robots_Damaged.at(team_id));
-                theteam->Team_Robots_Damaged.erase(q);
-                theteam->Team_Robots_Survive.insert(tmp);
-                theteam->Team_Robots_Damaged.at(team_id)->Revive();
-            }
-            else
-            {
-                auto q1 = theteam->Team_Robots_Survive.find(team_id);
-                if (q1 == theteam->Team_Robots_Survive.end()) //不在正常池
-                {
-                    switch (type)
-                    {
-                    case 0: Construction_Robots(teamname, team_id);
-                        break;
-                    case 1: Infantry_Robots_1(teamname, team_id);
-                        break;
-                    default: cout << "Wrong command!" << endl;
-                    }
-                }
-            }
-        }
+        cout<<"2"<<endl;
+
+           if ( TeamList.empty()||p == TeamList.end() ) //检查有无该队名，若没有则创建新队伍，创建新机器人
+           {
+               cout<<"1"<<endl;
+               switch (type)
+               {
+               case 0:cout<<"2"<<endl;
+                  new Construction_Robots(teamname, team_id);
+                   break;
+               case 1:cout<<"3"<<endl;
+                  new Infantry_Robots_1(teamname, team_id);
+                   break;
+               default: cout << "Wrong command!" << endl;
+               }
+           }
+           else
+           {
+               //队伍存在，判断在不在阵亡池
+               auto theteam = TeamList[teamname];
+               auto q = theteam->Team_Robots_Damaged.find(team_id);
+               if (q != theteam->Team_Robots_Damaged.end()) //在阵亡池,给他复活
+               {
+                   auto tmp = std::make_pair(team_id, theteam->Team_Robots_Damaged.at(team_id));
+                   theteam->Team_Robots_Damaged.erase(q);
+                   theteam->Team_Robots_Survive.insert(tmp);
+                   theteam->Team_Robots_Damaged.at(team_id)->Revive();
+               }
+               else
+               {
+                   auto q1 = theteam->Team_Robots_Survive.find(team_id);
+                   if (q1 == theteam->Team_Robots_Survive.end()) //不在正常池
+                   {
+                       switch (type)
+                       {
+                       case 0: Construction_Robots(teamname, team_id);
+                           break;
+                       case 1: Infantry_Robots_1(teamname, team_id);
+                           break;
+                       default: cout << "Wrong command!" << endl;
+                       }
+                   }
+               }
+           }
+
+
+
     }
     void command::Attack(uns teamname , uns team_id, uns damage_account)
     {
@@ -170,7 +181,10 @@ namespace my
             {
                 return;
             }
-            for ()
+            for (int i=p->level; i<level; i++)
+            {
+                TeamList.at(teamname)->Team_Robots_Survive.at(teamid)->level_up();
+            }
         }catch (...){};
     }
 

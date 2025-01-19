@@ -31,13 +31,13 @@ namespace my
         uns team_id; //tid
         bool is_survive = true;
         std::shared_ptr<robots> tothis = shared_from_this(); //指向自身的智能指针
-        bool level_up(void) = delete; //升级（删除自身，创造一个高等级的，各种映射处理利索）
+        void level_up(void) ; //升级（删除自身，创造一个高等级的，各种映射处理利索）
         void damage(void); //阵亡
         const uns Blood_Ceiling = 0;
         const uns Heat_Ceiling = 0;
         void print(void); //打印相关信息
         void Revive(void); //复活
-        void level_reset(uns);
+
         uns level = 0;
 
     private:
@@ -53,7 +53,7 @@ namespace my
         enum type robottype = Construction;
         Construction_Robots(uns, uns); //初始化
         ~Construction_Robots() = default ;
-        void level_reset(void) = delete;
+        void level_up(void) = delete;
 
     private:
         const uns Blood_Ceiling = 300;
@@ -66,6 +66,7 @@ namespace my
         enum type robottype = Infantry;
         Infantry_Robots_1(uns, uns);
         ~Infantry_Robots_1() = default;
+        void level_up(void) ;
         const uns Blood_Ceiling = 100;
         const uns Heat_Ceiling = 100;
         uns level = 1;
@@ -79,6 +80,7 @@ namespace my
         ~Infantry_Robots_2() = default;
         const uns Blood_Ceiling = 150;
         const uns Heat_Ceiling = 200;
+        void level_up(void) ;
         uns level = 2;
     };
 
@@ -91,6 +93,7 @@ namespace my
         const uns Blood_Ceiling = 250;
         const uns Heat_Ceiling = 300;
         uns level = 3;
+
     };
 } // my
 

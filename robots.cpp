@@ -53,7 +53,7 @@ namespace my
         Heat_Count = heat;
     }
 
-    robots::robots(uns Teamname, uns tid)
+    robots::robots(uns Teamname, uns tid):std::enable_shared_from_this<robots>()
     {
 
         Heat_Count = 0; //热量初始为0
@@ -129,18 +129,22 @@ void robots::Revive(void)
     void Infantry_Robots_1::level_up()
     {uns teamname1=teamname;
         uns team_id1=team_id;
-         tothis.reset();
         Infantry_Robots_2(teamname1,team_id1);
+         tothis.reset();
+
 
     }
     void Infantry_Robots_2::level_up()
     {uns teamname1=teamname;
         uns team_id1=team_id;
-        tothis.reset();
         Infantry_Robots_3(teamname1,team_id1);
+        tothis.reset();
     }
 
+void robots::level_up()
+    {
 
+    }
 
 
     // robots::robots(uns heat,uns Team,uns tid)//已废弃
