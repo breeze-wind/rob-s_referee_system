@@ -23,7 +23,7 @@ namespace my
         //  robots::robots(uns heat,uns,uns);//同上，但带初始热量（已废弃）
         ~robots();
         uns blood(void); //返回血量
-        uns heat(void); //返回热量
+        uns heat(void) const; //返回热量
         void blood(uns); //设定血量
         void heat(uns); //设定热量
         enum type robottype;
@@ -35,9 +35,9 @@ namespace my
         void damage(void); //阵亡
         const uns Blood_Ceiling = 0;
         const uns Heat_Ceiling = 0;
-        void print(void); //打印相关信息
+        void print(void) const; //打印相关信息
         void Revive(void); //复活
-
+        void ptr_create(void);
         uns level = 0;
 
     private:

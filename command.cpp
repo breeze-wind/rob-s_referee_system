@@ -58,8 +58,14 @@ namespace my
                 }
                 cmd_step++;
             }
-
+ if (cmd_step==cmd_nums)
+     break;
             time++;
+
+     }
+        while (true)
+        {
+            Time_Routine();
         }
         // for (int i=0;i<cmd_nums;i++)
         // {
@@ -84,7 +90,7 @@ namespace my
 
     void is_overheated( std::shared_ptr<robots>& the_robot) //判断热量并扣除血量热量
     {
-        if (the_robot->heat() >= the_robot->Heat_Ceiling)
+        if (the_robot->heat() > the_robot->Heat_Ceiling)
         {
             the_robot->blood(the_robot->blood() - 1);
         }
@@ -102,21 +108,23 @@ namespace my
 
     void command::Add_Robots(uns teamname, uns team_id, uns type) //指令A
     {
-        cout << teamname << endl;
+       // cout << teamname << endl;
         auto p = TeamList.find(teamname);
-        cout<<"2"<<endl;
+       // cout<<"2"<<endl;
 
            if ( TeamList.empty()||p == TeamList.end() ) //检查有无该队名，若没有则创建新队伍，创建新机器人
            {
-               cout<<"1"<<endl;
+           //    cout<<"1"<<endl;
                std::shared_ptr<robots> p;
                switch (type)
                {
-               case 0:cout<<"2"<<endl;
+               case 0://cout<<"2"<<endl;
                  p=  std::make_shared< Construction_Robots> (teamname, team_id);
+                  p->ptr_create();
                    break;
-               case 1:cout<<"3"<<endl;
+               case 1://cout<<"3"<<endl;
                    p=std::make_shared< Infantry_Robots_1>(teamname, team_id);
+                  p->ptr_create();
                    break;
                default: cout << "Wrong command!" << endl;
                }
@@ -128,9 +136,7 @@ namespace my
                auto q = theteam->Team_Robots_Damaged.find(team_id);
                if (q != theteam->Team_Robots_Damaged.end()) //在阵亡池,给他复活
                {
-                   auto tmp = std::make_pair(team_id, theteam->Team_Robots_Damaged.at(team_id));
-                   theteam->Team_Robots_Damaged.erase(q);
-                   theteam->Team_Robots_Survive.insert(tmp);
+
                    theteam->Team_Robots_Damaged.at(team_id)->Revive();
                }
                else

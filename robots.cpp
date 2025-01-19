@@ -38,7 +38,7 @@ namespace my
         return Blood_Count;
     }
 
-    uns robots::heat()
+    uns robots::heat() const
     {
         return Heat_Count;
     }
@@ -53,9 +53,8 @@ namespace my
         Heat_Count = heat;
     }
 
-    robots::robots(uns Teamname, uns tid):std::enable_shared_from_this<robots>()
+    robots::robots(uns Teamname, uns tid): std::enable_shared_from_this<robots>()
     {
-
         Heat_Count = 0; //热量初始为0
         teamname = Teamname; //队伍名
         team_id = tid; //机器人标识符
@@ -66,87 +65,101 @@ namespace my
             auto q = std::make_pair(Teamname, p);
             TeamList.insert(q);
         }
-        tothis=shared_from_this();
-        std::shared_ptr<robots> r = tothis;
-        mymanage.Robots_List_Survive.push_back(r); //总存活列表里加上这个机器人
-        // TeamList[Team]->Team_Robots_List_Survive.push_back(r);//队存活列表里加机器人
-        auto q = std::make_pair(tid, r);
-        TeamList[Teamname]->Team_Robots_All.insert(q); //加入tid的映射
-        TeamList[Teamname]->Team_Robots_Survive.insert(q); //
-        TeamList[Teamname]->Team_Robots_Damaged.insert(q); //
+        //
     }
 
     void robots::damage() //机器人销毁
-    {if (is_survive==true)
     {
-        blood(0); //血量0
-        heat(0); //热量0
-        is_survive = false;
-        TeamList[teamname]->Team_Robots_Survive.erase(team_id); //从队伍存活名单删除
-        auto q = std::make_pair(team_id, tothis);
-        TeamList[teamname]->Team_Robots_Damaged.insert(q); //加入阵亡名单
-        auto it = std::find_if(mymanage.Robots_List_Survive.begin(), mymanage.Robots_List_Survive.end(),
-                               [this](const std::shared_ptr<robots> ptr) { return ptr == TeamList[teamname]->Team_Robots_Damaged.at(team_id); });
-        mymanage.Robots_List_Survive.erase(it);
-    }
-        else std::cout<<"The Robot With Teamid "<<team_id<<" in Team "<<teamname<<" is Already Damaged "<<std::endl;
-    }
-void robots::Revive(void)
-    {
-        if (is_survive==true)
+        if (is_survive == true)
         {
-            std::cout<<"The Robot With Teamid "<<team_id<<"in Team "<<teamname<<" Still Survive "<<std::endl;
+            blood(0); //血量0
+            heat(0); //热量0
+            is_survive = false;
+            TeamList[teamname]->Team_Robots_Survive.erase(team_id); //从队伍存活名单删除
+            auto q = std::make_pair(team_id, tothis);
+            TeamList[teamname]->Team_Robots_Damaged.insert(q); //加入阵亡名单
+            auto it = std::find_if(mymanage.Robots_List_Survive.begin(), mymanage.Robots_List_Survive.end(),
+                                   [this](const std::shared_ptr<robots> ptr)
+                                   {
+                                       return ptr == TeamList[teamname]->Team_Robots_Damaged.at(team_id);
+                                   });
+            mymanage.Robots_List_Survive.erase(it);
+            print();
+        }
+        else std::cout << "The Robot With Teamid " << team_id << " in Team " << teamname << " is Already Damaged " <<
+            std::endl;
+    }
 
+    void robots::Revive(void)
+    {
+        if (is_survive == true)
+        {
+            std::cout << "The Robot With Teamid " << team_id << "in Team " << teamname << " Still Survive " <<
+                std::endl;
         }
         else
         {
-
             blood(Blood_Ceiling); //血量0
             heat(0); //热量0
             is_survive = true;
             TeamList[teamname]->Team_Robots_Damaged.erase(team_id); //从队伍阵亡名单删除
-            auto q = std::make_pair(team_id,tothis );
+            auto q = std::make_pair(team_id, tothis);
             TeamList[teamname]->Team_Robots_Survive.insert(q); //加入阵亡名单
             mymanage.Robots_List_Survive.push_back(tothis);
-
         }
     }
 
     robots::~robots()
     {
-
-        if (is_survive==true)
+        if (is_survive == true)
         {
-            auto it=std::find_if(mymanage.Robots_List_Survive.begin(), mymanage.Robots_List_Survive.end(),[this](std::shared_ptr<robots> ptr){return ptr ==tothis;});
-            if (it!=mymanage.Robots_List_Survive.end())
-                mymanage.Robots_List_Survive.erase(it);//从总存活数组中删去
+            auto it = std::find_if(mymanage.Robots_List_Survive.begin(), mymanage.Robots_List_Survive.end(),
+                                   [this](std::shared_ptr<robots> ptr) { return ptr == tothis; });
+            if (it != mymanage.Robots_List_Survive.end())
+                mymanage.Robots_List_Survive.erase(it); //从总存活数组中删去
             TeamList[teamname]->Team_Robots_Survive.erase(team_id);
             TeamList[teamname]->Team_Robots_All.erase(team_id);
             tothis = nullptr;
         }
-
-
     }
+
     void Infantry_Robots_1::level_up()
-    {uns teamname1=teamname;
-        uns team_id1=team_id;
-        Infantry_Robots_2(teamname1,team_id1);
-         tothis.reset();
-
-
-    }
-    void Infantry_Robots_2::level_up()
-    {uns teamname1=teamname;
-        uns team_id1=team_id;
-        Infantry_Robots_3(teamname1,team_id1);
+    {
+        uns teamname1 = teamname;
+        uns team_id1 = team_id;
+        auto p = std::make_shared<Infantry_Robots_2>(teamname1, team_id1);
+        p->ptr_create();
         tothis.reset();
     }
 
-void robots::level_up()
+    void Infantry_Robots_2::level_up()
     {
-
+        uns teamname1 = teamname;
+        uns team_id1 = team_id;
+        auto p = std::make_shared<Infantry_Robots_3>(teamname1, team_id1);
+        tothis.reset();
     }
 
+    void robots::level_up()
+    {
+    }
+
+    void robots::ptr_create()
+    {
+        tothis = shared_from_this();
+        std::shared_ptr<robots> r = tothis;
+        mymanage.Robots_List_Survive.push_back(r); //总存活列表里加上这个机器人
+        // TeamList[Team]->Team_Robots_List_Survive.push_back(r);//队存活列表里加机器人
+        auto q = std::make_pair(team_id, r);
+        TeamList[teamname]->Team_Robots_All.insert(q); //加入tid的映射
+        TeamList[teamname]->Team_Robots_Survive.insert(q); //
+        TeamList[teamname]->Team_Robots_Damaged.insert(q); //
+    }
+
+    void robots::print() const
+    {
+        std::cout << "D"<<" " << teamname <<" "<< team_id << std::endl;
+    }
 
     // robots::robots(uns heat,uns Team,uns tid)//已废弃
     // {
