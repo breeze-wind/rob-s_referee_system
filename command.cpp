@@ -109,13 +109,14 @@ namespace my
            if ( TeamList.empty()||p == TeamList.end() ) //检查有无该队名，若没有则创建新队伍，创建新机器人
            {
                cout<<"1"<<endl;
+               std::shared_ptr<robots> p;
                switch (type)
                {
                case 0:cout<<"2"<<endl;
-                  std::make_shared< Construction_Robots> (teamname, team_id);
+                 p=  std::make_shared< Construction_Robots> (teamname, team_id);
                    break;
                case 1:cout<<"3"<<endl;
-                 std::make_shared< Infantry_Robots_1>(teamname, team_id);
+                   p=std::make_shared< Infantry_Robots_1>(teamname, team_id);
                    break;
                default: cout << "Wrong command!" << endl;
                }
